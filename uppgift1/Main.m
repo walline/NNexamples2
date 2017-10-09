@@ -12,10 +12,12 @@ weightInterval = [-1 1];
 
 network = InitializeNetwork(networkDimensions, weightInterval);
 networkMatrix = network{1,1};
-
+sigma =
+eta =
 for i=1:T_order
     
-    networkMatrix = UpdateWeights(networkMatrix,T_order,sigma_0,eta_0);
+    networkMatrix = UpdateWeights(networkMatrix,T_order,...
+        sigma,eta,tau_sigma);
     
 end
 
