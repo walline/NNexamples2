@@ -16,6 +16,9 @@ sigma =
 eta =
 for i=1:T_order
     
+    eta = eta_0*exp(-T_order/tau_sigma);
+    sigma = sigma_0*exp(-T_order/tau_sigma);
+    
     networkMatrix = UpdateWeights(networkMatrix,T_order,...
         sigma,eta,tau_sigma);
     
