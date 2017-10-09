@@ -1,3 +1,7 @@
+clc
+clear all
+close all
+
 T_order = 1000;
 sigma_0 = 100;
 eta_0 = 0.1;
@@ -15,17 +19,17 @@ networkMatrix = network{1,1};
 for i=1:T_order
     
     r = randi(nbrOfInputPatterns);
-    randomPattern = patterns(r);
+    randomPattern = patterns(r,:)';
     eta = eta_0*exp(-i/tau_sigma);
     sigma = sigma_0*exp(-i/tau_sigma);
     
-    networkMatrix = UpdateWeights(networkMatrix,input,...
+    networkMatrix = UpdateWeights(networkMatrix,randomPattern,...
         sigma,eta);
     
 end
 
 subplot(2,1,1);
-plot(networkMatrix(1),networkMatrix(2))
+plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after ordering phase')
 hold on
 
@@ -34,10 +38,13 @@ sigma_conv = 0.9;
 eta_conv = 0.01;
 
 for i = 1:T_conv    
-    networkMatrix = UpdateWeights(networkMatrix,T_order,...
-        sigma_conv,eta_conv,tau_sigma);    
+    r = randi(nbrOfInputPatterns);
+    randomPattern = patterns(r,:)';
+    
+    networkMatrix = UpdateWeights(networkMatrix,randomPattern,...
+        sigma_conv,eta_conv);   
 end
 
 subplot(2,1,2);
-plot(networkMatrix(1),networkMatrix(2))
+plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after convergence phase')
