@@ -12,14 +12,14 @@ nbrOfInputPatterns = 1000;
 patterns = GeneratePatterns(nbrOfInputPatterns);
 
 networkDimensions = [2 100];
-weightInterval = [-1 1];
+weightInterval = [0.45 0.55];
 
 network = InitializeNetwork(networkDimensions, weightInterval);
 networkMatrix = network{1,1};
 for i=1:T_order
     
     r = randi(nbrOfInputPatterns);
-    randomPattern = patterns(r,:)';
+    randomPattern = patterns(r,:);
     eta = eta_0*exp(-i/tau_sigma);
     sigma = sigma_0*exp(-i/tau_sigma);
     
@@ -39,7 +39,7 @@ eta_conv = 0.01;
 
 for i = 1:T_conv    
     r = randi(nbrOfInputPatterns);
-    randomPattern = patterns(r,:)';
+    randomPattern = patterns(r,:);
     
     networkMatrix = UpdateWeights(networkMatrix,randomPattern,...
         sigma_conv,eta_conv);   
