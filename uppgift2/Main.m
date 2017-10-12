@@ -22,7 +22,7 @@ modulusWeightsCase2 = zeros(1,numberOfUpdates);
 for i = 1:numberOfUpdates
     patternNumber = randi(numberOfPatterns);
     chosenPattern = inputPatterns(patternNumber,:);
-    zeta = weightsCase1*chosenPattern;
+    zeta = chosenPattern*weightsCase1;
     
     deltaWeights = eta*zeta*(chosenPattern'-zeta*weightsCase1);
     weightsCase1 = weightsCase1 + deltaWeights;
@@ -34,7 +34,7 @@ end
 for i = 1:numberOfUpdates
     patternNumber = randi(numberOfPatterns);
     chosenPattern = scaledInputPatterns(patternNumber,:);
-    zeta = weightsCase2*chosenPattern;
+    zeta = chosenPattern*weightsCase2;
     
     deltaWeights = eta*zeta*(chosenPattern'-zeta*weightsCase2);
     weightsCase2 = weightsCase2 + deltaWeights;
