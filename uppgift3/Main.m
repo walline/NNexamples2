@@ -6,7 +6,7 @@ inputPatterns = importdata(fileName);
 
 eta = 0.02;
 numberOfUpdates = 1e5;
-nNeurons = 5;
+nNeurons = 20;
 numberOfPatterns = size(inputPatterns,1);
 
 initialWeightsGaussian = -1+2*rand(nNeurons,2);
@@ -49,12 +49,12 @@ for i = 1:numberOfPatterns
     [g, ~] = ActivationFunction(pattern,weightsGaussian);
     
     [output, ~] = FeedForward(g,weights,threshold,beta);
-    distanceVec = abs(referenceValue - sign(output));
+    distanceVec(i) = abs(referenceValue - sign(output));
 end
 
 error = 1/(2*numberOfPatterns)*sum(distanceVec)
 
-
+%%
 %plot
 x = linspace(-15,25,100);
 y = linspace(-15,15,100);
