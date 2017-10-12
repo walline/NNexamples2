@@ -3,12 +3,16 @@ function networkMatrix = UpdateWeights(networkMatrix,inputPattern,...
 
 nbrOfOutputNeurons = size(networkMatrix,1);
 
-output = networkMatrix*inputPattern';
-[~,winningNeuron] = max(output);
+for i=1:nbrOfOutputNeurons
+    weightCoordinate = networkMatrix(i,:);
+    distances(i) = norm(weightCoordinate - inputPattern);
+end
+
+[~,closestNeuron] = min(distances);
 
 for i=1:nbrOfOutputNeurons
     neuronWeight = networkMatrix(i,:);
-    delta_weights(i,:) = eta*NeighbourhoodFunction(winningNeuron,i,sigma).*...
+    delta_weights(i,:) = eta*NeighbourhoodFunction(closestNeuron,i,sigma).*...
         (inputPattern - neuronWeight);
     
 end
