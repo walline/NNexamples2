@@ -40,5 +40,12 @@ for i = 1:nTrainingSteps
                                          threshold, beta, eta);
 end
 
+%plot
+x = linspace(-15,25,1000);
+y = linspace(-15,15,1000);
 
+input = [x' y'];
+    [g, ~] = ActivationFunction(chosenPattern,weightsGaussian);
+    
+    [output, b] = FeedForward(g,weights,threshold,beta);
 
