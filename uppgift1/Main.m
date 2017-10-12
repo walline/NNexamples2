@@ -28,10 +28,15 @@ for i=1:T_order
     
 end
 
-subplot(2,1,1);
+xvertices = [0, 0, 1, 1, 0.5, 0.5];
+yvertices = [0, 1, 1, 0.5, 0.5, 0];
+
+subplot(1,2,1);
+patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
+hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after ordering phase')
-hold on
+
 
 T_conv = 2e4;
 sigma_conv = 0.9;
@@ -45,7 +50,9 @@ for i = 1:T_conv
         sigma_conv,eta_conv);   
 end
 
-subplot(2,1,2);
+subplot(1,2,2);
+patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
+hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after convergence phase')
 
@@ -81,10 +88,14 @@ for i=1:T_order
     
 end
 
-subplot(2,1,1);
+xvertices = [0, 0, 1, 1, 0.5, 0.5];
+yvertices = [0, 1, 1, 0.5, 0.5, 0];
+
+subplot(1,2,1);
+patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
+hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after ordering phase')
-hold on
 
 T_conv = 2e4;
 sigma_conv = 0.9;
@@ -98,6 +109,8 @@ for i = 1:T_conv
         sigma_conv,eta_conv);   
 end
 
-subplot(2,1,2);
+subplot(1,2,2);
+patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
+hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after convergence phase')
