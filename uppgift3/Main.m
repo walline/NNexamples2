@@ -61,11 +61,16 @@ y = linspace(-15,15,100);
 [X,Y] = meshgrid(x,y);
 
 input = [x' y'];
+outputGrid=zeros(100);
 for i = 1:100
     for j=1:100
         pattern = [X(i,j) Y(i,j)];
-[g, ~] = ActivationFunction(chosenPattern,weightsGaussian);
-[output, b] = FeedForward(g,weights,threshold,beta);
+[g, ~] = ActivationFunction(pattern,weightsGaussian);
+[outputGrid(i,j), ~] = FeedForward(g,weights,threshold,beta);
     end
 end
+
+
+
+
 
