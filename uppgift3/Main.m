@@ -15,10 +15,10 @@ weightsGaussian = initialWeightsGaussian;
 
 for i = 1:numberOfUpdates
     r = randi(numberOfPatterns);
-    chosenPattern = inputPattern(r,2;end);
+    chosenPattern = inputPatterns(r,2:end);
     [~,index] = ActivationFunction(chosenPattern,weightsGaussian);
     
-    deltaWeightsGaussian = eta*(chosenPattern-weightsGaussian(index,:);
+    deltaWeightsGaussian = eta*(chosenPattern-weightsGaussian(index,:));
     weightsGaussian(index,:) = weightsGaussian(index,:) + deltaWeightsGaussian;
 end
 
@@ -27,18 +27,33 @@ nTrainingSteps = 3000;
 eta = 0.1;
 
 initialWeights = -1+2*rand(nNeurons,1);
+weights = initialWeights;
 threshold = -1+2*rand();
 
 for i = 1:nTrainingSteps
     r = randi(numberOfPatterns);
-    chosenPattern = inputPattern(r,2:end);
-    referenceValue = inputPattern(r,1);
+    chosenPattern = inputPatterns(r,2:end);
+    referenceValue = inputPatterns(r,1);
     [g, ~] = ActivationFunction(chosenPattern,weightsGaussian);
     
-    [output, b] = FeedForward(g,weights,threshold,beta)
+    [output, b] = FeedForward(g,weights,threshold,beta);
     [weights, threshold] = UpdateNetwork(output, g, referenceValue, b, weights,...
                                          threshold, beta, eta);
 end
+
+distanceVec = zeros(numberOfPatterns,1);
+
+for i = 1:numberOfPatterns
+    referenceValue = inputPatterns(i,1);
+    pattern = inputPatterns(i,2:end);
+    [g, ~] = ActivationFunction(pattern,weightsGaussian);
+    
+    [output, ~] = FeedForward(g,weights,threshold,beta);
+    distanceVec = abs(referenceValue - sign(output));
+end
+
+error = 1/(2*numberOfPatterns)*sum(distanceVec)
+
 
 
 
