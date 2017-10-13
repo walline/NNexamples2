@@ -44,9 +44,15 @@ end
 
 subplot(2,2,1)
 plot(1:numberOfUpdates,modulusWeightsCase1)
+title('Non-centered data')
+xlabel('Iterations')
+ylabel('|w|')
 
 subplot(2,2,2)
 plot(1:numberOfUpdates,modulusWeightsCase2)
+title('Centered data')
+xlabel('Iterations')
+ylabel('|w|')
 
 weightsCase1
 subplot(2,2,3)
