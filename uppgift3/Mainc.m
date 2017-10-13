@@ -65,7 +65,10 @@ end
 avgError(nNeurons) = mean(error);
 
 end
-plot(1:nNeuron,avgError)
+plot(1:nNeurons,avgError)
+
+xlabel('Number of Gaussian neurons','FontSize',16)
+ylabel('Average classification error','FontSize',16)
 
 
 

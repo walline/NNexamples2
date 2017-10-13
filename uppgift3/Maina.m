@@ -114,6 +114,13 @@ scatter(X,Y,10,outputGridColor,'filled')
 
 hold on 
 
-scatter(inputPatterns(:,2),inputPatterns(:,3),'b')
+scatter(inputPatterns(1:1000,2),inputPatterns(1:1000,3),'b')
 hold on
+scatter(inputPatterns(1001:2000,2),inputPatterns(1001:2000,3),'k')
+
 scatter(weightsGaussian(:,1),weightsGaussian(:,2),42,'y','filled')
+
+title('Input data, decision boundry and Gaussian neurons')
+xlabel('x_1','FontSize',16)
+ylabel('x_2','FontSize',16)
+
