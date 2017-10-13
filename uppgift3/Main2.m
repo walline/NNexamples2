@@ -56,11 +56,11 @@ error = 1/(2*numberOfPatterns)*sum(distanceVec)
 
 %%
 %plot
+close
 x = linspace(-15,25,100);
 y = linspace(-15,15,100);
 [X,Y] = meshgrid(x,y);
 
-input = [x' y'];
 outputGrid=zeros(100);
 for i = 1:100
     for j=1:100
@@ -69,6 +69,23 @@ for i = 1:100
 [outputGrid(i,j), ~] = FeedForward(g,weights,threshold,beta);
     end
 end
+
+outputGrid = sign(outputGrid);
+
+X=X(:);
+Y=Y(:);
+outputGrid=outputGrid(:);
+
+for i=1:length(outputGrid)
+    if(outputGrid(i) == 1)
+        outputGridColor(i,1:3) = [1 0 0];
+    else
+        outputGridColor(i,1:3) = [0 1 0];
+    end
+end
+
+scatter(X,Y,10,outputGridColor,'filled')
+
 
 
 
