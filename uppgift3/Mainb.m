@@ -61,6 +61,7 @@ for run=1:nbrOfRuns
     error(run) = 1/(2*numberOfPatterns)*sum(distanceVec);
     
     if(error(run) < smallestError)
+        smallestError = error(run);
         bestWeightsGaussian = weightsGaussian;
         bestWeights = weights;
         bestThreshold = threshold;
@@ -76,10 +77,11 @@ disp(avgError)
 %%
 %plot
 close
-resolution = 100;
+resolution = 300;
 x = linspace(-15,25,resolution);
 y = linspace(-15,15,resolution);
 [X,Y] = meshgrid(x,y);
+
 outputGrid=zeros(resolution);
 
 weightsGaussian = bestWeightsGaussian;
@@ -109,3 +111,9 @@ for i=1:length(outputGrid)
 end
 
 scatter(X,Y,10,outputGridColor,'filled')
+
+hold on 
+
+scatter(inputPatterns(:,2),inputPatterns(:,3),'b')
+hold on
+scatter(weightsGaussian(:,1),weightsGaussian(:,2),42,'y','filled')
