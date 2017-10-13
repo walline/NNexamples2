@@ -7,8 +7,8 @@ inputPatterns = importdata(fileName);
 
 numberOfPatterns = size(inputPatterns,1);
 nbrOfRuns = 20;
-
-for nNeurons = 1:10
+smallestError = inf;
+nNeurons = 10;
 
 for run=1:nbrOfRuns
     
@@ -60,16 +60,52 @@ for run=1:nbrOfRuns
     
     error(run) = 1/(2*numberOfPatterns)*sum(distanceVec);
     
+    if(error(run) < smallestError)
+        bestWeightsGaussian = weightsGaussian;
+        bestWeights = weights;
+        bestThreshold = threshold;
+    end
 end
 
-avgError(nNeurons) = mean(error);
+avgError = mean(error);
+disp('average error:')
+disp(avgError)
 
+
+
+%%
+%plot
+close
+resolution = 100;
+x = linspace(-15,25,resolution);
+y = linspace(-15,15,resolution);
+[X,Y] = meshgrid(x,y);
+outputGrid=zeros(resolution);
+
+weightsGaussian = bestWeightsGaussian;
+        weights = bestWeights;
+        threshold = bestThreshold;
+
+for i = 1:resolution
+    for j=1:resolution
+        pattern = [X(i,j) Y(i,j)];
+[g, ~] = ActivationFunction(pattern,weightsGaussian);
+[outputGrid(i,j), ~] = FeedForward(g,weights,threshold,beta);
+    end
 end
-plot(1:nNeuron,avgError)
 
+outputGrid = sign(outputGrid);
 
+X=X(:);
+Y=Y(:);
+outputGrid=outputGrid(:);
 
+for i=1:length(outputGrid)
+    if(outputGrid(i) == 1)
+        outputGridColor(i,1:3) = [1 0 0];
+    else
+        outputGridColor(i,1:3) = [0 1 0];
+    end
+end
 
-
-
-
+scatter(X,Y,10,outputGridColor,'filled')
