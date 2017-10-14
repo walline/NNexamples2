@@ -58,12 +58,16 @@ weightsCase1
 subplot(2,2,3)
 plot(inputPatterns(:,1),inputPatterns(:,2),'o')
 hold on
-plot([0, weightsCase1(1)],[0, weightsCase1(2)])
+quiver(0, 0,weightsCase1(1), weightsCase1(2),5,'color','green','LineWidth',1,'MaxHeadSize',0.3)
+xlabel('x_1')
+ylabel('x_2')
 
 subplot(2,2,4)
 plot(scaledInputPatterns(:,1),scaledInputPatterns(:,2),'o')
 hold on
-plot([0, weightsCase2(1)],[0, weightsCase2(2)])
+quiver(0, 0,weightsCase2(1), weightsCase2(2),'color','green','LineWidth',1,'MaxHeadSize',1.5)
+xlabel('x_1')
+ylabel('x_2')
 
 
 
