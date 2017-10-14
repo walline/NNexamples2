@@ -36,6 +36,9 @@ patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
 hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after ordering phase')
+xlabel('x_1')
+ylabel('x_2')
+axis square
 
 
 T_conv = 2e4;
@@ -55,6 +58,9 @@ patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
 hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after convergence phase')
+xlabel('x_1')
+ylabel('x_2')
+axis square
 
 %%
 
@@ -96,6 +102,9 @@ patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
 hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after ordering phase')
+xlabel('x_1')
+ylabel('x_2')
+axis square
 
 T_conv = 2e4;
 sigma_conv = 0.9;
@@ -114,3 +123,6 @@ patch(xvertices,yvertices,'black','EdgeColor','none','FaceAlpha',0.2)
 hold on
 plot(networkMatrix(:,1),networkMatrix(:,2))
 title('Weight vectors after convergence phase')
+xlabel('x_1')
+ylabel('x_2')
+axis square
