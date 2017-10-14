@@ -65,5 +65,21 @@ plot(scaledInputPatterns(:,1),scaledInputPatterns(:,2),'o')
 hold on
 plot([0, weightsCase2(1)],[0, weightsCase2(2)])
 
+CMatrix = zeros(2);
+
+for i=1:numberOfPatterns
+    xi = scaledInputPatterns(i,:);
+    CMatrix = CMatrix + xi'*xi;
+end
+
+CMatrix = CMatrix/numberOfPatterns;
+
+
+[eigenvectors,eigenvalues] = eig(CMatrix);
+
+[~,index] = max(sum(eigenvalues));
+
+principalComponent = eigenvectors(index,:);
+
 
 
